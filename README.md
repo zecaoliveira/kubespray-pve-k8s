@@ -1,5 +1,7 @@
 # Kubernetes Homelab usando Kubespray, Ubuntu 22.04 e Proxmox
 
+Seguindo a documentação do Pradeep Kumar funcionou: https://www.linuxtechi.com/install-kubernetes-using-kubespray/
+
 Dica de configuração / ajuste:
 
 Durante o processo de configuração ocorreu uma falha no modprobe com referência ao IPVS.
