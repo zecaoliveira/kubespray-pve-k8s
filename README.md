@@ -26,3 +26,23 @@ E sucesso: cluster configurado e funcionando!!!
 Verificando a configuração a partir do "controller":
 
 ![image](https://github.com/zecaoliveira/kubespray-pve-k8s/assets/42525959/02a1d250-a9bc-400a-92f4-e1e1465342c9)
+
+Implantei uma aplicação NGINX para testar o cluster:
+
+```
+$ kubectl create deployment demo-nginx-kubespray --image=nginx --replicas=2
+$ kubectl expose deployment demo-nginx-kubespray --type NodePort --port=80
+$ kubectl get  deployments.apps
+$ kubectl get pods
+$ kubectl get svc demo-nginx-kubespray
+```
+
+Resultado:
+
+![image](https://github.com/zecaoliveira/kubespray-pve-k8s/assets/42525959/f8641d5b-cd89-4389-a2cc-58b4f28d0c43)
+
+![image](https://github.com/zecaoliveira/kubespray-pve-k8s/assets/42525959/0ed46dd9-aaa3-443b-963e-bdac3fb35fff)
+
+
+
+
