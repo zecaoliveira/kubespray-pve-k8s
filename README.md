@@ -19,6 +19,10 @@ kube_proxy_mode: iptables # Custom version: 04/02/2024
 
 ```
 
-E sucesso: cluster configurado!!!
+E sucesso: cluster configurado e funcionando!!!
 
 ![image](https://github.com/zecaoliveira/kubespray-pve-k8s/assets/42525959/b514a70e-ed84-40fe-9fdd-234b59dbb8d6)
+
+Verificando a configuração a partir do "controller":
+
+![image](https://github.com/zecaoliveira/kubespray-pve-k8s/assets/42525959/02a1d250-a9bc-400a-92f4-e1e1465342c9)
