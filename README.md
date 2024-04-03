@@ -8,7 +8,7 @@ Durante o processo de configuração ocorreu uma falha no modprobe com referênc
 
 Isso ocorre porque no Ubuntu Cloud Image não tem o IPVS, conforme explicado aqui: https://github.com/kubernetes-sigs/kubespray/issues/10602
 
-Para corrigir basta alterar o kube_proxy_mode: iptables
+Para corrigir basta alterar o "kube_proxy_mode" de "ipvs" para "iptables":
 
 ```
 $ vim inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
