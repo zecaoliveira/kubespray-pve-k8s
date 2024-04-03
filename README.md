@@ -113,6 +113,6 @@ http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-da
 
 ![image](https://github.com/zecaoliveira/kubespray-pve-k8s/assets/42525959/431462e4-4eb3-431b-9a3b-d254f6293203)
 
-Enquanto o proxy for matido ativado, conforme fizemos na etapa 4, o acesso ao dashboard vai funcionar.
+Enquanto o proxy for mantido ativo, conforme fizemos na etapa 4, o acesso ao dashboard vai funcionar.
 
 Até o próximo laboratório.
