@@ -43,6 +43,76 @@ Resultado:
 
 ![image](https://github.com/zecaoliveira/kubespray-pve-k8s/assets/42525959/0ed46dd9-aaa3-443b-963e-bdac3fb35fff)
 
+Para testar o acesso ao dashboard GUI siga as etapas abaixo:
 
+1. Criar um ServiceAccount:
 
+```
+$ vim dashboard-adminuser.yml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kube-system
 
+$ kubectl apply -f dashboard-adminuser.yml
+serviceaccount/admin-user created
+```
+
+2. Criar um ClusterRoleBinding:
+
+```
+$ vim admin-role-binding.yml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kube-system
+
+$ kubectl apply -f admin-role-binding.yml
+clusterrolebinding.rbac.authorization.k8s.io/admin-user created
+```
+
+3. Agora crie um token para o "admin-user" e guarde para usar na etapa de acesso ao dashboard (7):
+
+```
+$ kubectl -n kube-system  create token admin-user
+```
+![image](https://github.com/zecaoliveira/kubespray-pve-k8s/assets/42525959/2c4fc2a8-87ba-4ecd-a4c2-d8f9ef8fe330)
+
+4. Faça uma conexão da sua máquina para a do servidor "controller" do cluster Kubernetes e inicie o proxy:
+
+```
+$ ssh -L 8001:localhost:8001 sysops@172.16.0.41
+$ sudo su -
+# kubectl proxy
+Starting to serve on 127.0.0.1:8001
+```
+
+5. Configure o proxy da sua máquina local com as configurações abaixo:
+
+![image](https://github.com/zecaoliveira/kubespray-pve-k8s/assets/42525959/d18a152d-4b30-4965-b6d7-0d8e0cb3041f)
+
+6. Copie e cole o endereço abaixo no mesmo navegador em que configurou o proxy da etapa número 5:
+```
+http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#/workloads?namespace=default
+```
+
+7. Na janela que vai surgir cole o token que você criou na etapa de número 3:
+
+![image](https://github.com/zecaoliveira/kubespray-pve-k8s/assets/42525959/2b58236b-aba0-45a3-8704-565a80468db8)
+
+8. E sucesso. Se tudo estiver funcionando você verá o dashboard do Kubernetes:
+
+![image](https://github.com/zecaoliveira/kubespray-pve-k8s/assets/42525959/431462e4-4eb3-431b-9a3b-d254f6293203)
+
+Enquanto o proxy for matido ativado, conforme fizemos na etapa 4, o acesso ao dashboard vai funcionar.
+
+Até o próximo laboratório.
