@@ -9,7 +9,7 @@ Isso ocorre porque no Ubuntu Cloud Image não tem o IPVS, conforme explicado aqu
 Para corrigir basta alterar o kube_proxy_mode: iptables
 
 ```
-vim inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
+$ vim inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
 # Kube-proxy proxyMode configuration.
 # Can be ipvs, iptables <-
 # kube_proxy_mode: ipvs # Original version
