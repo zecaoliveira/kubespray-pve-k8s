@@ -2,7 +2,7 @@
 
 Dica de configuração / ajuste:
 
-Durante o processo de configuração ocorreu uma falha no modprobe do IPVS.
+Durante o processo de configuração ocorreu uma falha no modprobe com referência ao IPVS.
 
 Isso ocorre porque no Ubuntu Cloud Image não tem o IPVS, conforme explicado aqui: https://github.com/kubernetes-sigs/kubespray/issues/10602
 
